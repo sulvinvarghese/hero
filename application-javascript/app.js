@@ -1,9 +1,4 @@
 
-
-
-// // #####################################Working Below###########################################333
-
-
 const { FileSystemWallet, Gateway,Wallets,X509WalletMixin} = require('fabric-network');
 const FabricCAServices = require('fabric-ca-client');
 const path = require('path');
@@ -137,63 +132,6 @@ console.log('Connected to the contract successfully.');
         app.get('/', (req, res) => {
           res.send('Hello, World!');
       }); 
-
-      
-
-
-// app.post('/passport', async (req, res) => {
-//   console.log("creating Hero");
-//   try {
-//     // const { gateway, contract } = await connectToNetwork();
-//     const { passportId, vehicleNumber, owner  } = req.body;
-//     console.log(passportId, vehicleNumber, owner );
-//     const result = await contract1Org1.submitTransaction('createPassport', passportId, vehicleNumber, owner);
-//     // console.log(result);
-//     console.log("result")
-//     console.log(result.toString());
-//     console.log("result1")
-//     console.log(result);
-
-//     res.json({ result: result.toString() });
-//   } catch (error) {
-//     console.error('Error creating Passport:', error.message);
-//     res.status(500).json({ error: 'Failed to create Passport' });
-//   }
-// });
-
-// // Add a trip to a vehicle passport
-// app.post('/passport/:passportId/trips', async (req, res) => {
-//   // const contract = await connectToNetwork();
-//   console.log("creating Hero");
-//   try {
-//   const { passportId } = req.params;
-//   const { tripId, tripData } = req.body;
-//   console.log(passportId, tripId, tripData );
-//   const result = await contract1Org1.submitTransaction('addTrip', passportId, tripId, tripData);
-
-//   res.json({ result: result.toString() });
-// res.status(200).json(response);
-// } catch (error) {
-//   console.error('Error creating Passport:', error.message);
-//   res.status(500).json({ error: 'Failed to create Passport' });
-// }
-// });
-
-
-
-// app.get('/passport/:passportId', async (req, res) => { //http://localhost:8081/ehr/225
-//   try {
-//       // const contract = await connectToNetwork();
-//       const { passportId } = req.params;
-//       console.log(passportId+":passportId");
-//       const result = await contract1Org1.evaluateTransaction('getPassport', passportId);
-//       res.json(JSON.parse(result.toString()));
-//       //res.status(200).json({ passport: result.toString() });
-//   } catch (error) {
-//     console.error('Error retrieving Passport:', error.message);
-//     res.status(500).json({ error: 'Failed to retrieve Passport' });
-// }
-// });
 
 
 // Create a vehicle passport
@@ -351,54 +289,5 @@ app.get('/passport/:passportID', async (req, res) => {
 main();
 
 
-//***************************************Working Above********************************************************** */
-
-
-
-
-//***************************************************************************************** */
-
-// {
-//   "passportID": "VP123456",
-//   "owner": "John Doe",
-//   "manufacturer": "Tesla",
-//   "model": "Model 3",
-//   "year": "2022",
-//   "telematicsData": [
-//   {
-//   "timestamp": "2023-05-15T10:00:00Z",
-//   "speed": 75,
-//   "distance": 120,
-//   "location": "XYZ Street"
-//   },
-//   {
-//   "timestamp": "2023-05-15T12:30:00Z",
-//   "speed": 60,
-//   "distance": 90,
-//   "location": "ABC Road"
-//   }
-//   ],
-//   "serviceRecords": [
-//   {
-//   "date": "2023-04-20",
-//   "description": "Routine maintenance",
-//   "mechanic": "AutoCare Services",
-//   "cost": 150
-//   },
-//   {
-//   "date": "2023-02-10",
-//   "description": "Tire replacement",
-//   "mechanic": "Superior Auto Shop",
-//   "cost": 300
-//   }
-//   ],
-//   "insurance": {
-//   "provider": "ABC Insurance",
-//   "policyNumber": "POL123456",
-//   "effectiveDate": "2023-01-01",
-//   "expiryDate": "2024-01-01",
-//   "coverageAmount": 1000000
-//   }
-//   }
 
 
