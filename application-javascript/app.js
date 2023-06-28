@@ -220,13 +220,9 @@ app.post('/telematics/:passportID', async (req, res) => {
     console.log("passportID, data:" + passportID, data);
 
     const response = await contract1Org1.submitTransaction('addTelematicsData', passportID, data);
-    const parsedResponse = JSON.parse(response.toString());
 
-    if (parsedResponse.success) {
-      res.status(200).json({ success: true, message: 'Telematics data added successfully', passport: parsedResponse.passport });
-    } else {
-      res.status(500).json({ success: false, error: 'Failed to add telematics data' });
-    }
+      res.status(200).json({ success: true, message: 'Telematics data added successfully' });
+
   } catch (error) {
     console.error(`Failed to add telematics data: ${error.message}`);
     res.status(500).json({ success: false, error: 'Failed to add telematics data' });
@@ -250,6 +246,22 @@ app.post('/service/:passportID', async (req, res) => {
   }
 });
 
+// Add insurance record to a passport
+app.post('/insurance/:passportID', async (req, res) => {
+  try {
+
+    const { passportID } = req.params;
+    const { record } = req.body;
+    console.log("passportID, record:"+passportID, record)
+    await contract1Org1.submitTransaction('addInsurance', passportID, record);
+
+    res.status(200).json({ message: 'Insurance record added successfully' });
+  } catch (error) {
+    console.error(`Failed to add insurance record: ${error.message}`);
+    res.status(500).json({ error: 'Failed to add insurance record' });
+  }
+});
+
 // Retrieve telematics data of a passport
 app.get('/telematics/:passportID', async (req, res) => {
   try {
@@ -257,8 +269,11 @@ app.get('/telematics/:passportID', async (req, res) => {
     const { passportID } = req.params;
     console.log("passportID:"+passportID)
     const telematicsData = await contract1Org1.evaluateTransaction('getTelematicsData', passportID);
-
-    res.status(200).json({ telematicsData: JSON.parse(telematicsData.toString()) });
+    console.log("get telematics data");
+    console.log(JSON.parse(telematicsData.toString()));
+    console.log(telematicsData.response.json());
+    res.status(200).json({ telematicsData: JSON.parse(telematicsData) });
+    // res.status(200).json({ telematicsData: JSON.parse(telematicsData.toString()) });
   } catch (error) {
     console.error(`Failed to retrieve telematics data: ${error.message}`);
     res.status(500).json({ error: 'Failed to retrieve telematics data' });
@@ -280,6 +295,21 @@ app.get('/service/:passportID', async (req, res) => {
   }
 });
 
+// Retrieve insurance records of a passport
+app.get('/insurance/:passportID', async (req, res) => {
+  try {
+
+    const { passportID } = req.params;
+    console.log("passportID:"+passportID)
+    const insuranceRecords = await contract1Org1.evaluateTransaction('getInsurance', passportID);
+
+    res.status(200).json({ insuranceRecords: JSON.parse(insuranceRecords.toString()) });
+  } catch (error) {
+    console.error(`Failed to retrieve insurance records: ${error.message}`);
+    res.status(500).json({ error: 'Failed to retrieve service records' });
+  }
+});
+
 // Retrieve passport details
 app.get('/passport/:passportID', async (req, res) => {
   try {
@@ -295,35 +325,16 @@ app.get('/passport/:passportID', async (req, res) => {
     // console.log("Passport Details:", passportDetails);
     console.log( "*************************************************************\n\n",JSON.parse(passportDetails.toString()));
     const passportDet=(JSON.parse(passportDetails.toString()));
-
-    for (const telematicsData of passportDet.telematicsData) {
-      
-      console.log(typeof telematicsData);
-      
-      const string = telematicsData ;
-
-      const pattern = /\[(.*?)\]/;
-
-      const match = string.match(pattern);
-
-      if (match) {
-
-        const array = match[1].split(", ").map(Number);
-
-        console.log(array); // Output: [1, 2, 3]
-
-      }
-    }
+    console.log(typeof passportDet)
+    console.log(typeof passportDet.telematicsData)
+    console.log(JSON.stringify(passportDet.telematicsData),passportDet.telematicsData[0])
     
-    res.status(200).json({ passportDetails: JSON.parse(passportDetails.toString()) });
+    res.status(200).json({ passportDetails: passportDet });
   } catch (error) {
     console.error(`Failed to retrieve passport details: ${error.message}`);
     res.status(500).json({ error: 'Failed to retrieve passport details' });
   }
 });
-
-
-
 
 
         app.listen(port, () => {
@@ -341,3 +352,53 @@ main();
 
 
 //***************************************Working Above********************************************************** */
+
+
+
+
+//***************************************************************************************** */
+
+// {
+//   "passportID": "VP123456",
+//   "owner": "John Doe",
+//   "manufacturer": "Tesla",
+//   "model": "Model 3",
+//   "year": "2022",
+//   "telematicsData": [
+//   {
+//   "timestamp": "2023-05-15T10:00:00Z",
+//   "speed": 75,
+//   "distance": 120,
+//   "location": "XYZ Street"
+//   },
+//   {
+//   "timestamp": "2023-05-15T12:30:00Z",
+//   "speed": 60,
+//   "distance": 90,
+//   "location": "ABC Road"
+//   }
+//   ],
+//   "serviceRecords": [
+//   {
+//   "date": "2023-04-20",
+//   "description": "Routine maintenance",
+//   "mechanic": "AutoCare Services",
+//   "cost": 150
+//   },
+//   {
+//   "date": "2023-02-10",
+//   "description": "Tire replacement",
+//   "mechanic": "Superior Auto Shop",
+//   "cost": 300
+//   }
+//   ],
+//   "insurance": {
+//   "provider": "ABC Insurance",
+//   "policyNumber": "POL123456",
+//   "effectiveDate": "2023-01-01",
+//   "expiryDate": "2024-01-01",
+//   "coverageAmount": 1000000
+//   }
+//   }
+
+
