@@ -1,0 +1,185 @@
+{
+	"info": {
+		"_postman_id": "ed3e3c30-ae24-486c-9054-046f0b4ddf4f",
+		"name": "Hero",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23340454"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8081/passport/200/trips",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"data\": {\n    \"timestamp\": \"2023-05-30T10:00:00Z\",\n    \"location\": \"Latitude: 40.7129, Longitude: -74.0069\",\n    \"speed\": 70,\n    \"fuelLevel\": 60\n  }\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/telematics/V123456789",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"telematics",
+						"V123456789"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8081/passport/205",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/passport/205",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"passport",
+						"205"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8081/passport/205 Copy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/telematics/V123456789",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"telematics",
+						"V123456789"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8081/passport/205 Copy 2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/telematics/V123456789",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"telematics",
+						"V123456789"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8081/passport",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"passportId\":200,\n    \"vehicleNumber\":\"KL16S4466\",\n    \"owner\":\"Alice\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/passport",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"passport"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8081/service/V123456789",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"record\": {\n    \"serviceDate\": \"2023-05-20\",\n    \"serviceType\": \"Oil Change\",\n    \"mechanic\": \"John Doe\",\n    \"notes\": \"Performed regular oil change and filter replacement.\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/service/V123456789",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"service",
+						"V123456789"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8081/service/V123456789 Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\n  \"record\": {\n  \"provider\": \"ABC Insurance\",\n  \"policyNumber\": \"POL123456\",\n  \"effectiveDate\": \"2023-01-01\",\n  \"expiryDate\": \"2024-01-01\",\n  \"coverageAmount\": 1000000\n  }\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/insurance/V123456789",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"insurance",
+						"V123456789"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
